@@ -26,8 +26,6 @@ jobs:
             -   run: npm install -g @datadog/datadog-ci
             -   name: Set DD env tag
                 run: DATADOG_SITE=datadoghq.com datadog-ci tag --level pipeline --tags env:dev
-            -   name: Set DD service tag
-                run: DATADOG_SITE=datadoghq.com datadog-ci tag --level pipeline --tags service:webgoat
             -   name: Set up JDK 21
                 uses: actions/setup-java@v4.2.1
                 with:
