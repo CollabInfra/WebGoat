@@ -17,6 +17,10 @@ on:
 jobs:
     build:
         runs-on: ubuntu-latest
+        env:
+            DD_CIVISIBILITY_AGENTLESS_ENABLED: true
+            DATADOG_API_KEY: ${{ secrets.DATADOG_API_KEY }}
+            DATADOG_SITE: datadoghq.com
         # display name of the job
         name: "Robot framework test"
         steps:
@@ -65,3 +69,11 @@ jobs:
                 with:
                     gh_access_token: ${{ secrets.GITHUB_TOKEN }}
                     report_path: 'robotreport'
+            -   name: Install Datadog cli
+                run: npm install -g @datadog/datadog-ci
+            -   name: Set DD env tag
+                run: datadog-ci tag --level pipeline --tags env:dev
+            -   name: Send report to Datadog
+                run: |
+                     python3 -m robot -x Result.xml robotreport/robot/goat.robot
+                     datadog-ci junit upload --service webgoat ./Result.xml --env dev
