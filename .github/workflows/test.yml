@@ -75,5 +75,5 @@ jobs:
                 run: datadog-ci tag --level pipeline --tags env:dev
             -   name: Send report to Datadog
                 run: |
-                     python3 -m robot.rebot -x Result.xml ./robot/output.xml
+                     python3 -m robot.rebot -x Result.xml ./robotreport/output.xml
                      datadog-ci junit upload --service webgoat ./Result.xml --env dev
