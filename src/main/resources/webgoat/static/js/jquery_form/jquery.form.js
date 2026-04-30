@@ -187,7 +187,7 @@ $.fn.ajaxSubmit = function(options) {
 
     // perform a load on the target only if dataType is not provided
     if (!options.dataType && options.target) {
-        var oldSuccess = options.success || function(){};
+        var oldSuccess = options.success || function(){/* empty */};
         callbacks.push(function(data) {
             var fn = options.replaceTarget ? 'replaceWith' : 'html';
             $(options.target)[fn](data).each(oldSuccess, arguments);
