@@ -90,7 +90,7 @@ define(['jquery',
                             	//used to also mark forms like JWT assignment 8 complete
                             	action = action.substring(0,action.indexOf("?"));
                             }
-                            if (action && isAttackSolved(action)) {
+                            if (action && isAttackSolved(action)) {/* empty */
                             } else {
                             	solvedClass = 'solved-false';
                             }
